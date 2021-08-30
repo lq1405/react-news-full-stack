@@ -7,6 +7,7 @@ import UserList from './UserList/UserList';
 import PermitUserList from "./PermitUserList/PermitUserList";
 import PermitList from "./PermitList/PermitList";
 import NoPage from './NoPage/NoPage';
+import menuManager from './menuManager';
 
 //
 import './index.scss'
@@ -29,7 +30,12 @@ function NewsControlHome(props) {
                             <Route path='/user-manager/list/:page' component={UserList}></Route>
                             <Route path='/permit-manager/user-list/:page' component={PermitUserList}></Route>
                             <Route path='/permit-manager/permit-type-list' component={PermitList}></Route>
+
+                            <Route path='/menu-manager' component={menuManager}></Route>
+
                             <Redirect exact from='/' to='/home'></Redirect>
+
+
 
                             <Route path='*' component={NoPage}></Route>
                         </Switch>

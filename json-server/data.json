@@ -1,0 +1,52 @@
+{
+    "menus":[
+        {
+            "id":1,
+            "key":"/home",
+            "title":"首页",
+            "isshow":1,
+            "mainmenu":1
+        },
+        {
+            "id":2,
+            "key":"/user-manager",
+            "title":"用户管理",
+            "isshow":1,
+            "mainmenu":1
+        },
+        {
+            "id":3,
+            "key":"/permit-manager",
+            "title":"权限管理",
+            "isshow":1,
+            "mainmenu":1
+        },
+        {
+            "id":4,
+            "key":"/news-manager",
+            "title":"新闻管理",
+            "isshow":1,
+            "mainmenu":1
+        },
+        {
+            "id":5,
+            "key":"/examine-manager",
+            "title":"审核管理",
+            "isshow":1,
+            "mainmenu":1
+        },
+        {
+            "id":6,
+            "key":"/release-manager",
+            "title":"发布管理",
+            "isshow":1,
+            "mainmenu":1
+        }
+    ],
+    "childrens":[
+
+    ]
+}
+
+
+

@@ -1,6 +1,6 @@
 //引入图标
-import { HomeOutlined, MenuFoldOutlined, SolutionOutlined, UsergroupAddOutlined,MenuUnfoldOutlined } from '@ant-design/icons';
-import React, {useState} from 'react';
+import { HomeOutlined, MenuFoldOutlined, SolutionOutlined, UsergroupAddOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
 import { withRouter } from 'react-router-dom'
 
@@ -39,6 +39,10 @@ const menuList = [
                 title: "权限列表",
             }
         ]
+    }, {
+        key: "/menu-manager",
+        icon: '',
+        title: "菜单管理"
     }
 ]
 
@@ -67,24 +71,24 @@ const renderMenu = (menuList, props) => {
 
 function SideMenu(props) {
 
-    let [collapsed, setCollapsed]=useState(false);
+    let [collapsed, setCollapsed] = useState(false);
 
-    
+
     //该变量是菜单的底部的控制菜单的收缩的图标
-    const shrinkIcon=(
-        <div className='menu-footer-shrink' onClick={()=>setCollapsed(!collapsed)}>
+    const shrinkIcon = (
+        <div className='menu-footer-shrink' onClick={() => setCollapsed(!collapsed)}>
             {
-                collapsed?
-                <MenuUnfoldOutlined />:
-                <MenuFoldOutlined />
+                collapsed ?
+                    <MenuUnfoldOutlined /> :
+                    <MenuFoldOutlined />
             }
         </div>
-        )  
+    )
 
-        
+
     //组件内的props是没有值的，要使用withRouter高阶组件，渲染SideMenu后props才是有值的
     return (
-        <Sider trigger={shrinkIcon} collapsedWidth="60px" collapsed={ collapsed } collapsible className='layout-sider'>
+        <Sider trigger={shrinkIcon} collapsedWidth="60px" collapsed={collapsed} collapsible className='layout-sider'>
             <Menu
                 mode="inline"
                 defaultOpenKeys={['sub1']}
