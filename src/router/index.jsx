@@ -1,6 +1,6 @@
 import React from 'react';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
-import Login from '../views/Login';
+import Login from '../views/Login/Login';
 import NewsControlHome from '../views/NewsControlHome/NewsControlHome';
 
 function Router(props) {

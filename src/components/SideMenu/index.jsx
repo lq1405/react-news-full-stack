@@ -1,77 +1,77 @@
 //引入图标
-import { HomeOutlined, MenuFoldOutlined, SolutionOutlined, UsergroupAddOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-import React, { useState } from 'react';
+import {
+    HomeOutlined, MenuFoldOutlined,
+    SolutionOutlined, UsergroupAddOutlined,
+    MenuUnfoldOutlined, FileDoneOutlined,
+    BarsOutlined, CloudUploadOutlined
+} from '@ant-design/icons';
+import React, { useState, useEffect } from 'react';
 import { Layout, Menu } from 'antd';
 import { withRouter } from 'react-router-dom'
+import axios from "axios";
 
 const { Sider } = Layout;
 const { SubMenu, Item } = Menu;
 
-//模拟创建菜单的数据
-const menuList = [
-    {
-        key: "/home",
-        icon: <HomeOutlined />,
-        title: "首页",
-    },
-    {
-        key: "/user-manager",
-        icon: <UsergroupAddOutlined />,
-        title: "用户管理",
-        children: [
-            {
-                key: "/user-manager/list/1",
-                title: "用户列表",
-            }
-        ]
-    },
-    {
-        key: "/permit-manager",
-        icon: <SolutionOutlined />,
-        title: "权限管理",
-        children: [
-            {
-                key: "/permit-manager/user-list/1",
-                title: "用户权限",
-            },
-            {
-                key: "/permit-manager/permit-type-list",
-                title: "权限列表",
-            }
-        ]
-    }, {
-        key: "/menu-manager",
-        icon: '',
-        title: "菜单管理"
-    }
-]
-
-
-/**
- * 动态的创建菜单和子菜单的方法
- * @menuList    由菜单和子菜单组成的数据
- * @props       组件传递的路由数据
- * 返回的是菜单的jsx
- * **/
-const renderMenu = (menuList, props) => {
-    return menuList.map(item => {
-        if (item.children) {
-            return <SubMenu key={item.key} icon={item.icon} title={item.title}>
-                {renderMenu(item.children, props)}
-            </SubMenu>
-        }
-        return <Item key={item.key} icon={item.icon}
-            onClick={() => {
-                props.history.push(item.key)
-            }}
-        >{item.title}</Item>
-    })
+//定义图标：
+const icons = {
+    "/home": <HomeOutlined />,
+    "/user-manager": <UsergroupAddOutlined />,
+    "/permit-manager": <SolutionOutlined />,
+    "/news-manager": <BarsOutlined />,
+    "/examine-manager": <FileDoneOutlined />,
+    "/release-manager": <CloudUploadOutlined />
 }
+
+
 
 
 function SideMenu(props) {
 
     let [collapsed, setCollapsed] = useState(false);
+    let [menuList, setMenuList] = useState([]);
+    const limits = JSON.parse(localStorage.getItem('token')).role.limits;
+
+    useEffect(() => {
+        axios.get('http://localhost:8000/menus?_embed=children')
+            .then((res) => {
+                setMenuList(res.data)
+            })
+
+    }, [])
+
+    // 判断主菜单的子菜单的children存不存在，存在里面的子菜单的isshow是不是能显示
+    const checkItemChildIsShow = (item) => {
+        if (item.children === undefined) {
+            return false;
+        }
+        let list = item.children.filter(data => data.isshow === false);
+        return list.length === 0 ? true : false;
+    }
+
+
+    /**
+     * 动态的创建菜单和子菜单的方法
+     * @menuList    由菜单和子菜单组成的数据
+     * @props       组件传递的路由数据
+     * 返回的是菜单的jsx
+     * **/
+    const renderMenu = (menuList, props) => {
+        return menuList.map(item => {
+            if (item.children?.length > 0 && item.isshow && checkItemChildIsShow(item) && limits.includes(item.key)) {
+                return <SubMenu key={item.key} icon={icons[item.key]} title={item.title}>
+                    {renderMenu(item.children, props)}
+                </SubMenu>
+            }
+            return item.isshow && limits.includes(item.key) && <Menu.Item key={item.key} icon={icons[item.key]}
+                onClick={() => {
+                    props.history.push(item.key)
+                }
+                }
+            > {item.title}</Menu.Item >
+        })
+    }
+
 
 
     //该变量是菜单的底部的控制菜单的收缩的图标
@@ -86,23 +86,30 @@ function SideMenu(props) {
     )
 
 
+    let selectKey = props.location.pathname;
+    let openKey = '/' + selectKey.split('/')[1];
+
     //组件内的props是没有值的，要使用withRouter高阶组件，渲染SideMenu后props才是有值的
     return (
         <Sider trigger={shrinkIcon} collapsedWidth="60px" collapsed={collapsed} collapsible className='layout-sider'>
-            <Menu
-                mode="inline"
-                defaultOpenKeys={['sub1']}
-                defaultSelectedKeys={['1']}
-                style={{ height: '100%' }}
-            >
-                {/* 下面的方式是动态渲染菜单页面的 */}
-                {renderMenu(menuList, props)}
-
-
-            </Menu>
+            {/*  设置菜单的滚动条，将菜单的高度设为100% */}
+            <div style={{ display: "flex", height: '100%', "flexDirection": "column" }}>
+                <div style={{ flex: 1, 'overflow': "auto" }}>
+                    <Menu
+                        mode="inline"
+                        defaultOpenKeys={[openKey]}
+                        selectedKeys={[selectKey]}
+                        style={{ height: '100%' }}
+                    >
+                        {/* 下面的方式是动态渲染菜单页面的 */}
+                        {renderMenu(menuList, props)}
+                    </Menu>
+                </div>
+            </div>
 
         </Sider>
     );
+
 }
 
 // 使用withRouter使得SideMenu的props不为null

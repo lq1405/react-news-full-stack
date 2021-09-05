@@ -1,0 +1,41 @@
+.login-out-box {
+    background-color: antiquewhite;
+    background-image: url(../../img/is.jpeg);
+    background-size: 100% 100%;
+    height: 100%;
+    position: relative;
+
+    .form-container {
+        height: 400px;
+        width: 400px;
+        background-color: #FFF;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -200px;
+        margin-left: -200px;
+
+        .form-in-input {
+            width: 90%;
+            margin: 5px 5%;
+            border-bottom: 1px dashed #ccc;
+            font-size: 16px;
+
+        }
+
+        .ant-form-item-explain-error {
+            margin-left: 10%;
+            width: 55%;
+        }
+
+        .login-form-button {
+            width: 80%;
+            margin: 20px 10% 5px; 
+        }
+
+        .login-form-forgot {
+            position: relative;
+            right: -60%;
+        }
+    }
+}

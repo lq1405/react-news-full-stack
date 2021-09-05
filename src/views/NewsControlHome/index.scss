@@ -1,16 +1,15 @@
-
 #root,
 .ant-layout {
     height: 100%;
 }
 
 .ant-layout {
-    
+
     .header {
         border-bottom: 1px solid #ccc;
         background-color: #fff;
         margin-bottom: 2px;
-        
+
         .logo {
             float: left;
             width: 120px;
@@ -20,27 +19,30 @@
             background: rgba(255, 255, 255, 0.3);
         }
     }
-    
+
     .layout-sider {
         background-color: #fff;
 
 
-        .ant-layout-sider-trigger{
+        .ant-layout-sider-trigger {
 
             background-color: #fff;
             border-top: 1px solid #eee;
-            .menu-footer-shrink{
+
+            .menu-footer-shrink {
                 font-size: 20px;
                 color: #333;
             }
         }
     }
-    .site-layout-content {
-        padding: {
-            top: 30px;
-            left: 20px;
-            right: 20px;
-            bottom: 30px;
+
+
+
+        .site-layout-content {
+            background-color: #fff;
+            padding: 30px 20px;
+            overflow: auto;
+            margin: 20px;
         }
-    }
+
 }

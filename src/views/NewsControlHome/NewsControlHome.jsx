@@ -23,8 +23,8 @@ function NewsControlHome(props) {
             <Layout>
                 <SideMenu></SideMenu>
 
-                <Layout className="site-layout-content">
-                    <Content>
+                <Layout>
+                    <Content className="site-layout-content">
                         <Switch>
                             <Route path='/home' component={Home}></Route>
                             <Route path='/user-manager/list/:page' component={UserList}></Route>
