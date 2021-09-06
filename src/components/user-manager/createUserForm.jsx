@@ -9,11 +9,8 @@ const CreateUserForm = (props) => {
         <Form
             initialValues={[]}
             form={props.form}
-            // layout="vertical"
-            // name="form_in_modal"
             labelCol={{ span: 5 }}
         >
-            {console.log(111,props)}
             <Form.Item label="用户名" name="username"
                 // initialValue={props.defaultUser.username}
                 rules={[{ required: true, message: '该字段不能为空' }]}
@@ -38,7 +35,6 @@ const CreateUserForm = (props) => {
                 </Select>
             </Form.Item>
             <Form.Item label="角色权限" name="roleId"
-                // initialValue={props.defaultUser.role?.roleName}
                 rules={[{ required: true, message: '该字段不能为空' }]}
             >
                 <Select>

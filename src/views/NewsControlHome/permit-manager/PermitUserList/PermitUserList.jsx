@@ -48,12 +48,12 @@ function PermitUserList(props) {
                             style={{ marginRight: '10px' }} shape="circle"
                             icon={<UnorderedListOutlined />}
                             onClick={() => {
-                                axios.get('http://localhost:8000/menus?_embed=children')
+                                axios.get('/menus?_embed=children')
                                     .then(res => {
                                         console.log(res.data)
                                         setLimitList(res.data)
                                     });
-                                axios.get(`http://localhost:8000/roles/${item.id}`)
+                                axios.get(`/roles/${item.id}`)
                                     .then(res => {
                                         console.log(res.data.limits)
                                         setCurrentLimitList(res.data.limits.filter(item => item.split('/').length > 2 || item === '/home'))
@@ -69,7 +69,7 @@ function PermitUserList(props) {
                             onOk={() => {
                                 setShowListModal(false)
                                 setCurrentLimitList(currentLimitList)
-                                axios.patch(`http://localhost:8000/roles/${currentId}`, {
+                                axios.patch(`/roles/${currentId}`, {
                                     limits: [...currentLimitList, ...cachePermit]
                                 })
                                 console.log(currentLimitList)
@@ -93,7 +93,7 @@ function PermitUserList(props) {
                             shape="circle"
                             icon={<OrderedListOutlined />}
                             onClick={() => {
-                                axios.get(`http://localhost:8000/roles/${item.id}?_embed=users`)
+                                axios.get(`/roles/${item.id}?_embed=users`)
                                     .then(res => setCurrentLimitUserList(res.data.users)
                                     )
                                 setShowRoleUserList(true)
@@ -148,10 +148,10 @@ function PermitUserList(props) {
     }
     const deleteMethod = item => {
         setDataList(dataList.filter(data => data.id !== item.id));
-        axios.delete(`http://localhost:8000/roles/${item.id}`);
+        axios.delete(`/roles/${item.id}`);
     }
     useEffect(() => {
-        axios.get("http://localhost:8000/roles").then(res => setDataList(res.data));
+        axios.get("/roles").then(res => setDataList(res.data));
     }, [])
 
 

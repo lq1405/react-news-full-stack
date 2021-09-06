@@ -14,10 +14,14 @@ function UserList(props) {
     const [currentItem, setCurrentItem] = useState(null)
 
     useEffect(() => {
-        axios.get('http://localhost:8000/users?_expand=role').then(res => setDataSource(res.data))
+        axios.get('/users?_expand=role').then(res => {
+            setDataSource(res.data.filter(item => item.role.level <= JSON.parse(localStorage.getItem('token')).role.level))
+        })
     }, [])
     useEffect(() => {
-        axios.get('http://localhost:8000/roles').then(res => setPermitUserList(res.data));
+        axios.get('/roles').then(res => {
+            setPermitUserList(res.data.filter(item => item.level <= JSON.parse(localStorage.getItem('token')).role.level))
+        });
     }, [])
     const columns = [
         {
@@ -76,7 +80,7 @@ function UserList(props) {
                         shape="circle" type="primary"
                         icon={<SettingOutlined />}
                         onClick={() => {
-                            setShowEditModal(true); console.log(item);
+                            setShowEditModal(true);
                             form.setFieldsValue(item)
                             setCurrentItem(item);
                         }}
@@ -95,7 +99,7 @@ function UserList(props) {
             content: "当您点击 确认 的时候，该用户将被删除！",
             okText: '确认', cancelText: "取消",
             onOk() {
-                axios.delete(`http://localhost:8000/users/${item.id}`);
+                axios.delete(`/users/${item.id}`);
                 setDataSource(dataSource.filter(data => data.id !== item.id));
             }
         })
@@ -117,8 +121,7 @@ function UserList(props) {
                 onOk={() => {
                     form.validateFields()
                         .then(res => {
-                            console.log(res);
-                            axios.post('http://localhost:8000/users', {
+                            axios.post('/users', {
                                 ...res,
                                 enableDelete: true,
                                 enableConfig: true,
@@ -154,7 +157,7 @@ function UserList(props) {
                                 return item;
                             }))
                             setShowEditModal(false);
-                            axios.patch(`http://localhost:8000/users/${currentItem.id}`, res);
+                            axios.patch(`/users/${currentItem.id}`, res);
                         });
                 }}>
                 <CreateUserForm form={form} permitUserList={permitUserList}></CreateUserForm>

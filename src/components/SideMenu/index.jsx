@@ -11,7 +11,7 @@ import { withRouter } from 'react-router-dom'
 import axios from "axios";
 
 const { Sider } = Layout;
-const { SubMenu, Item } = Menu;
+const { SubMenu } = Menu;
 
 //定义图标：
 const icons = {
@@ -31,22 +31,22 @@ function SideMenu(props) {
     let [collapsed, setCollapsed] = useState(false);
     let [menuList, setMenuList] = useState([]);
     const limits = JSON.parse(localStorage.getItem('token')).role.limits;
-
+    const [arr] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:8000/menus?_embed=children')
+        axios.get('/menus?_embed=children')
             .then((res) => {
+                res.data.map(item => arr.push(item.key))
                 setMenuList(res.data)
             })
-
-    }, [])
+    }, [arr])
 
     // 判断主菜单的子菜单的children存不存在，存在里面的子菜单的isshow是不是能显示
     const checkItemChildIsShow = (item) => {
-        if (item.children === undefined) {
-            return false;
+        if (item.children === undefined && item.menuId) {
+            return true;
         }
         let list = item.children.filter(data => data.isshow === false);
-        return list.length === 0 ? true : false;
+        return list.length === item.children.length && item.key !== '/home' ? false : true;
     }
 
 
@@ -63,7 +63,7 @@ function SideMenu(props) {
                     {renderMenu(item.children, props)}
                 </SubMenu>
             }
-            return item.isshow && limits.includes(item.key) && <Menu.Item key={item.key} icon={icons[item.key]}
+            return item.isshow && checkItemChildIsShow(item) && limits.includes(item.key) && <Menu.Item key={item.key} icon={icons[item.key]}
                 onClick={() => {
                     props.history.push(item.key)
                 }
@@ -87,7 +87,7 @@ function SideMenu(props) {
 
 
     let selectKey = props.location.pathname;
-    let openKey = '/' + selectKey.split('/')[1];
+    let openKey = ['/' + selectKey.split('/')[1]];
 
     //组件内的props是没有值的，要使用withRouter高阶组件，渲染SideMenu后props才是有值的
     return (
@@ -97,7 +97,7 @@ function SideMenu(props) {
                 <div style={{ flex: 1, 'overflow': "auto" }}>
                     <Menu
                         mode="inline"
-                        defaultOpenKeys={[openKey]}
+                        defaultOpenKeys={JSON.parse(localStorage.getItem('token')).role.level === 10 ? openKey : arr}
                         selectedKeys={[selectKey]}
                         style={{ height: '100%' }}
                     >

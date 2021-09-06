@@ -20,7 +20,7 @@ function Login(props) {
     function submitData() {
         form.validateFields().then(res => {
             console.log(res)
-            axios.get(`http://localhost:8000/users?username=${res.username}&password=${res.password}&_expand=role`)
+            axios.get(`/users?username=${res.username}&password=${res.password}&_expand=role`)
                 .then(data => {
                     console.log(data.data);
                     if (data.data.length === 0) {

@@ -10,7 +10,7 @@ function PermitList(props) {
 	// const [modalVisible, setModalVisible] = useState(false);
 
 	useEffect(() => {
-		axios.get('http://localhost:8000/menus?_embed=children')
+		axios.get('/menus?_embed=children')
 			.then(res => {
 				const list = res.data;
 				list.forEach(item => {
@@ -70,20 +70,22 @@ function PermitList(props) {
 					<Popover title="页面配置"
 						content={
 							<Switch
+								disabled={item.mainmenu === 1}
 								checkedChildren="开启"
 								unCheckedChildren="关闭"
 								checked={item.isshow}
 								onClick={() => {
 									item.isshow = !item.isshow;
 									if (item.mainmenu) {
-										axios.patch(`http://localhost:8000/menus/${item.id}`, {
+										axios.patch(`/menus/${item.id}`, {
 											isshow: item.isshow,
 										})
 									} else {
-										axios.patch(`http://localhost:8000/children/${item.id}`, {
+										axios.patch(`/children/${item.id}`, {
 											isshow: item.isshow,
 										})
 									}
+									console.log(dataList)
 									setDataList([...dataList]);
 
 								}} />
@@ -122,12 +124,12 @@ function PermitList(props) {
 		console.log(item)
 		if (item.mainmenu) {
 			setDataList(dataList.filter(data => data.key !== item.key));
-			axios.delete(`http://localhost:8000/menus/${item.id}`);
+			axios.delete(`/menus/${item.id}`);
 		} else {
 
 			let list = dataList.filter(data => data.id === item.menuId);
 			list[0].children = list[0].children.filter(data => data.id !== item.id);
-			axios.delete(`http://localhost:8000/children/${item.id}`);
+			axios.delete(`/children/${item.id}`);
 
 			setDataList([...dataList]);
 		}

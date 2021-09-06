@@ -48,14 +48,14 @@
       "id": 1,
       "menuId": 2,
       "isshow": true,
-      "key": "/user-manager/list/1",
+      "key": "/user-manager/list",
       "title": "用户列表"
     },
     {
       "id": 2,
       "menuId": 3,
       "isshow": true,
-      "key": "/permit-manager/user-list/1",
+      "key": "/permit-manager/user-list",
       "title": "用户权限"
     },
     {
@@ -69,7 +69,7 @@
       "id": 4,
       "menuId": 4,
       "isshow": true,
-      "key": "/news-manager/list/1",
+      "key": "/news-manager/list",
       "title": "新闻列表"
     },
     {
@@ -83,7 +83,7 @@
       "id": 6,
       "menuId": 4,
       "isshow": true,
-      "key": "/news-manager/draft/1",
+      "key": "/news-manager/draft",
       "title": "草稿箱"
     },
     {
@@ -143,11 +143,11 @@
       "level": 10,
       "limits": [
         "/permit-manager",
-        "/news-manager/list/1",
+        "/news-manager/list",
         "/news-manager/write-news",
-        "/news-manager/draft/1",
+        "/news-manager/draft",
         "/news-manager/news-type",
-        "/permit-manager/user-list/1",
+        "/permit-manager/user-list",
         "/permit-manager/permit-type-list",
         "/examine-manager/no-check",
         "/examine-manager/check-fail",
@@ -158,7 +158,7 @@
         "/examine-manager",
         "/home",
         "/user-manager",
-        "/user-manager/list/1",
+        "/user-manager/list",
         "/release-manager",
         "/release-manager/released"
       ]
@@ -169,11 +169,47 @@
       "level": 9,
       "limits": [
         "/home",
-        "/permit-manager/user-list/1",
+        "/permit-manager/user-list",
         "/permit-manager/permit-type-list",
-        "/user-manager/list/1",
+        "/user-manager/list",
         "/user-manager",
         "/permit-manager"
+      ]
+    },
+    {
+      "id": 3,
+      "roleName": "编辑管理员",
+      "level": 8,
+      "limits": [
+        "/home",
+        "/examine-manager/no-check",
+        "/examine-manager/check-success",
+        "/examine-manager/check-fail",
+        "/news-manager/list",
+        "/news-manager/news-type",
+        "/examine-manager",
+        "/news-manager"
+      ]
+    },
+    {
+      "id": 4,
+      "roleName": "创作者",
+      "level": 0,
+      "limits": [
+        "/home",
+        "/release-manager/no-release",
+        "/release-manager",
+        "/release-manager/released",
+        "/release-manager/offline",
+        "/news-manager/write-news",
+        "/news-manager/list",
+        "/news-manager/draft",
+        "/news-manager/news-type",
+        "/news-manager",
+        "/examine-manager/no-check",
+        "/examine-manager/check-success",
+        "/examine-manager/check-fail",
+        "/examine-manager"
       ]
     }
   ],
@@ -217,11 +253,20 @@
     {
       "username": "jack",
       "password": "11111111",
-      "userState": "cancel",
-      "roleId": 2,
+      "userState": "action",
+      "roleId": 3,
       "enableDelete": true,
       "enableConfig": true,
       "id": 8
+    },
+    {
+      "username": "alan",
+      "password": "11111111",
+      "userState": "action",
+      "roleId": 4,
+      "enableDelete": true,
+      "enableConfig": true,
+      "id": 9
     }
   ]
 }
