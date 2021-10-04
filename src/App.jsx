@@ -2,6 +2,8 @@
 import './App.css';
 // import axios from 'axios';
 import Router from './router';
+import { Provider } from 'react-redux'
+import store  from './redux/store';
 
 function App() {
 
@@ -11,8 +13,9 @@ function App() {
 	// 	})
 	// }, [])
 	return (
-
+		<Provider store={store}>
 			<Router></Router>
+		</Provider>
 
 	)
 }

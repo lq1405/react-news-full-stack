@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Modal, Table, Tag, Form, } from 'antd';
 import axios from 'axios'
-import { DeleteOutlined, ExclamationCircleOutlined, SettingOutlined } from '_@ant-design_icons@4.6.4@@ant-design/icons';
+import { DeleteOutlined, ExclamationCircleOutlined, SettingOutlined } from '@ant-design/icons';
 import CreateUserForm from '../../../components/user-manager/createUserForm';
 
 
@@ -81,7 +81,7 @@ function UserList(props) {
                         icon={<SettingOutlined />}
                         onClick={() => {
                             setShowEditModal(true);
-                            form.setFieldsValue(item)
+                            form.setFieldsValue(item);
                             setCurrentItem(item);
                         }}
                     ></Button>

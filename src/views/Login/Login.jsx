@@ -28,11 +28,13 @@ function Login(props) {
                     }
                     if (data.data[0].userState === 'action') {
                         localStorage.setItem('token', JSON.stringify(data.data[0]));
+                        localStorage.setItem('collapsed', JSON.stringify({ collapsed: false }));
                         props.history.push('/home');
                     } else if (data.data[0].userState === 'warn') {
                         message.warning('您的账号被警告，请规范上网行为！')
                         setTimeout(() => {
                             localStorage.setItem('token', JSON.stringify(data.data[0]));
+                            localStorage.setItem('collapsed', JSON.stringify({ collapsed: false }));
                             props.history.push('/home');
                         }, 2000);
                     } else {

@@ -49,91 +49,104 @@
       "menuId": 2,
       "isshow": true,
       "key": "/user-manager/list",
-      "title": "用户列表"
+      "title": "用户列表",
+      "routerFiled": 0
     },
     {
       "id": 2,
       "menuId": 3,
       "isshow": true,
       "key": "/permit-manager/user-list",
-      "title": "用户权限"
+      "title": "用户权限",
+      "routerFiled": 0
     },
     {
       "id": 3,
       "menuId": 3,
       "isshow": true,
       "key": "/permit-manager/permit-type-list",
-      "title": "权限列表"
-    },
-    {
-      "id": 4,
-      "menuId": 4,
-      "isshow": true,
-      "key": "/news-manager/list",
-      "title": "新闻列表"
+      "title": "权限列表",
+      "routerFiled": 0
     },
     {
       "id": 5,
       "menuId": 4,
       "isshow": true,
       "key": "/news-manager/write-news",
-      "title": "写新闻"
+      "title": "写新闻",
+      "routerFiled": 0
     },
     {
       "id": 6,
       "menuId": 4,
       "isshow": true,
       "key": "/news-manager/draft",
-      "title": "草稿箱"
+      "title": "草稿箱",
+      "routerFiled": 0
+    },
+    {
+      "id": 4,
+      "menuId": 4,
+      "isshow": true,
+      "key": "/news-manager/delete",
+      "title": "已删除",
+      "routerFiled": 0
     },
     {
       "id": 7,
       "menuId": 4,
       "isshow": true,
       "key": "/news-manager/news-type",
-      "title": "新闻分类"
+      "title": "新闻分类",
+      "routerFiled": 0
     },
     {
       "id": 8,
       "menuId": 5,
       "isshow": true,
       "key": "/examine-manager/no-check",
-      "title": "待审核"
+      "title": "待审核",
+      "routerFiled": 0
     },
     {
       "id": 9,
       "menuId": 5,
       "isshow": true,
       "key": "/examine-manager/check-success",
-      "title": "审核通过"
+      "title": "审核通过",
+      "routerFiled": 0
     },
     {
       "id": 10,
       "menuId": 5,
       "isshow": true,
       "key": "/examine-manager/check-fail",
-      "title": "审核违规"
+      "title": "审核违规",
+      "routerFiled": 0
     },
     {
       "id": 11,
       "menuId": 6,
       "isshow": true,
       "key": "/release-manager/no-release",
-      "title": "待发布"
+      "title": "待发布",
+      "routerFiled": 0
     },
     {
       "id": 12,
       "menuId": 6,
       "isshow": true,
       "key": "/release-manager/released",
-      "title": "已发布"
+      "title": "已发布",
+      "routerFiled": 0
     },
     {
       "id": 13,
       "menuId": 6,
       "isshow": true,
       "key": "/release-manager/offline",
-      "title": "已下线"
+      "title": "已下线",
+      "routerFiled": 0
     }
   ],
   "roles": [
@@ -142,8 +155,6 @@
       "roleName": "超级管理员",
       "level": 10,
       "limits": [
-        "/permit-manager",
-        "/news-manager/list",
         "/news-manager/write-news",
         "/news-manager/draft",
         "/news-manager/news-type",
@@ -154,13 +165,15 @@
         "/examine-manager/check-success",
         "/release-manager/no-release",
         "/release-manager/offline",
-        "/news-manager",
-        "/examine-manager",
         "/home",
-        "/user-manager",
         "/user-manager/list",
+        "/release-manager/released",
+        "/user-manager",
+        "/permit-manager",
+        "/examine-manager",
         "/release-manager",
-        "/release-manager/released"
+        "/news-manager/delete",
+        "/news-manager"
       ]
     },
     {
@@ -185,9 +198,15 @@
         "/examine-manager/no-check",
         "/examine-manager/check-success",
         "/examine-manager/check-fail",
-        "/news-manager/list",
         "/news-manager/news-type",
+        "/news-manager/write-news",
+        "/news-manager/draft",
+        "/release-manager/no-release",
+        "/release-manager/released",
+        "/release-manager/offline",
         "/examine-manager",
+        "/release-manager",
+        "/news-manager/delete",
         "/news-manager"
       ]
     },
@@ -196,20 +215,18 @@
       "roleName": "创作者",
       "level": 0,
       "limits": [
-        "/home",
         "/release-manager/no-release",
-        "/release-manager",
         "/release-manager/released",
         "/release-manager/offline",
         "/news-manager/write-news",
-        "/news-manager/list",
         "/news-manager/draft",
-        "/news-manager/news-type",
-        "/news-manager",
         "/examine-manager/no-check",
         "/examine-manager/check-success",
         "/examine-manager/check-fail",
-        "/examine-manager"
+        "/news-manager/delete",
+        "/examine-manager",
+        "/release-manager",
+        "/news-manager"
       ]
     }
   ],
@@ -267,6 +284,150 @@
       "enableDelete": true,
       "enableConfig": true,
       "id": 9
+    }
+  ],
+  "newsTypes": [
+    {
+      "id": 1,
+      "typeName": "国内"
+    },
+    {
+      "id": 2,
+      "typeName": "国际"
+    },
+    {
+      "id": 3,
+      "typeName": "军事"
+    }
+  ],
+  "news": [
+    {
+      "title": "2222222",
+      "newsType": "国际",
+      "content": "<p>fffffffffffffffffffffffffffffffffff</p>\n",
+      "author": "admin",
+      "authorId": 1,
+      "examineState": 2,
+      "releaseState": 2,
+      "createTime": 1631104230054,
+      "view": 154,
+      "star": 63,
+      "id": 2,
+      "reviewerId": 1,
+      "examineTime": 1631537988641,
+      "deleteTime": 1631430614333,
+      "delete": false,
+      "newsTypeId": 2,
+      "releaseTime": 1631537991489
+    },
+    {
+      "title": "《习近平法治思想概论》",
+      "newsType": "国内",
+      "content": "<p style=\"text-align:start;\"></p>\n<p style=\"margin-left:0px;\"><span style=\"color: rgb(64,64,64);background-color: rgb(255,255,255);font-size: 18px;font-family: PingFang SC\", \"Lantinghei SC\", \"Helvetica Neue\", Helvetica, Arial, \"Microsoft YaHei\", å¾®è½¯é›…é»‘, STHeitiSC-Light, simsun, å®‹ä½“, \"WenQuanYi Zen Hei\", \"WenQuanYi Micro Hei\", sans-serif;\">新华社北京9月8日电　为推动习近平法治思想进教材进课堂进头脑，由中央宣传部、中国法学会组织编写的马克思主义理论研究和建设工程重点教材《习近平法治思想概论》（以下简称《概论》）一书，已由高等教育出版社出版。</span></p>\n<p style=\"margin-left:0px;\"><span style=\"color: rgb(64,64,64);background-color: rgb(255,255,255);font-size: 18px;font-family: PingFang SC\", \"Lantinghei SC\", \"Helvetica Neue\", Helvetica, Arial, \"Microsoft YaHei\", å¾®è½¯é›…é»‘, STHeitiSC-Light, simsun, å®‹ä½“, \"WenQuanYi Zen Hei\", \"WenQuanYi Micro Hei\", sans-serif;\">　　党的十八大以来，以习近平同志为核心的党中央在领导全面依法治国、建设法治中国的伟大实践中，从历史和现实相贯通、国际和国内相关联、理论和实际相结合上，深刻回答了新时代为什么实行全面依法治国、怎样实行全面依法治国等重大问题，提出了一系列全面依法治国新理念新思想新战略，形成了习近平法治思想。</span></p>\n<p style=\"margin-left:0px;\"><span style=\"color: rgb(64,64,64);background-color: rgb(255,255,255);font-size: 18px;font-family: PingFang SC\", \"Lantinghei SC\", \"Helvetica Neue\", Helvetica, Arial, \"Microsoft YaHei\", å¾®è½¯é›…é»‘, STHeitiSC-Light, simsun, å®‹ä½“, \"WenQuanYi Zen Hei\", \"WenQuanYi Micro Hei\", sans-serif;\">　　《概论》由“绪论+三编”构成，共20章，近27万字，阐释了习近平法治思想的鲜明特色、重大意义、丰富内涵、核心要义、科学方法、实践要求，全面反映了习近平法治思想是一个内涵丰富、论述深刻、逻辑严密、系统完备的科学理论体系，是马克思主义法治理论中国化最新成果，是习近平新时代中国特色社会主义思想的重要组成部分，是全面依法治国的根本遵循和行动指南。《概论》坚持忠实于原著、原文、原意，坚持学理化阐释、学术化表达、体系化构建，是高校法学类专业学生系统学习掌握习近平法治思想的重点教材。</span></p>\n<p style=\"text-align:start;\"><br>&nbsp;</p>\n",
+      "author": "admin",
+      "authorId": 1,
+      "examineState": 2,
+      "releaseState": 2,
+      "createTime": 1631109182238,
+      "view": 100,
+      "star": 25,
+      "id": 3,
+      "reviewerId": 1,
+      "examineTime": 1631327006714,
+      "delete": false,
+      "releaseTime": 1631342871684,
+      "newsTypeId": 1
+    },
+    {
+      "title": "中国残疾人体育事业取得长足进步 彰显我国制度优势中国残疾人体育事业取得长足进步 彰显我国制度优势中国残疾人体育事业取得长足进步 彰显我国制度优势",
+      "newsType": "国际",
+      "content": "<p style=\"text-align:start;\"><span style=\"color: rgb(51,51,51);background-color: rgb(255,255,255);font-size: 18px;font-family: PingFangSC-Regular, Helvetica, Arial, \"Microsoft Yahei\", sans-serif;\"><strong>央视网消息</strong>（新闻联播）：在东京残奥会的赛场上，中国残奥运动员们顽强拼搏，取得了优异成绩，这也是我国残疾人体育事业取得长足进步、中国人权事业发展开辟新境界的生动写照。</span></p>\n<p style=\"text-align:center;\"></p>\n<img src=\"https://p5.img.cctvpic.com/photoworkspace/contentimg/2021/09/08/2021090820080514324.gif\" alt=\"\" style=\"height: ;width: \"/>\n<p style=\"text-align:start;\"><span style=\"color: rgb(51,51,51);background-color: rgb(255,255,255);font-size: 18px;font-family: PingFangSC-Regular, Helvetica, Arial, \"Microsoft Yahei\", sans-serif;\">　　在东京残奥会田径赛场，这位在赛后被领跑员高高托起的盲人运动员叫刘翠青。从2013年起，她和领跑员徐冬林成为搭档，靠着一条10厘米的牵引绳并肩作战，8年的坚持与付出，在东京他们一起携手，成功卫冕。</span></p>\n<p style=\"text-align:start;\"><span style=\"color: rgb(51,51,51);background-color: rgb(255,255,255);font-size: 18px;font-family: PingFangSC-Regular, Helvetica, Arial, \"Microsoft Yahei\", sans-serif;\">　　如今，像刘翠青和徐冬林这样体育场内的携手也延伸到场外全民健身的队伍中。在浙江省湖州市奥体中心附近，每个周末这里都会出现一群身着橙色运动上衣的跑者，他们的后背上分别写着“视障”和“陪跑”的字样。这是2018年当地盲人协会和公益人士一起发起的陪跑项目，如今已经从刚开始五六个人发展到现在80多人固定参加例跑。</span></p>\n<p style=\"text-align:center;\"></p>\n<img src=\"https://p1.img.cctvpic.com/photoworkspace/contentimg/2021/09/08/2021090820090830667.gif\" alt=\"\" style=\"height: ;width: \"/>\n<p style=\"text-align:start;\"><span style=\"color: rgb(51,51,51);background-color: rgb(255,255,255);font-size: 18px;font-family: PingFangSC-Regular, Helvetica, Arial, \"Microsoft Yahei\", sans-serif;\">　　“十三五”期间，我国经常参加社区组织的文化体育活动的残疾人由“十二五”末的6.8%增长至14.6%。中国残联与国家体育总局共同出台文件，将残疾人康复健身体育工作进一步纳入残疾人事业和全民健身大局。截至2020年12月，全国累计设立社区残疾人健身示范点13313处，培养残疾人社会体育指导员近14万名。在上海市徐汇区长桥街道这间专门针对残疾人开设的“智慧阳光康健苑”，残疾人不出社区就能进行锻炼，还能得到专业人士的指导。</span></p>\n<p style=\"text-align:start;\"><span style=\"color: rgb(51,51,51);background-color: rgb(255,255,255);font-size: 18px;font-family: PingFangSC-Regular, Helvetica, Arial, \"Microsoft Yahei\", sans-serif;\">　　“十四五”期间，我国将围绕健全残疾人群众体育组织、完善残疾人健身设施、举办更多群众体育赛事等方面不断努力，让更多的残疾人在运动中收获自信与健康。</span>&nbsp;</p>\n",
+      "author": "admin",
+      "authorId": 1,
+      "examineState": 2,
+      "releaseState": 2,
+      "createTime": 1631182247525,
+      "view": 453,
+      "star": 222,
+      "id": 4,
+      "reviewerId": 1,
+      "examineTime": 1631534519798,
+      "delete": false,
+      "newsTypeId": 2,
+      "releaseTime": 1631537965816,
+      "offlineTime": 1631413663270,
+      "deleteTime": 1631430142835
+    },
+    {
+      "title": "我的",
+      "newsType": "国内",
+      "content": "<p>22222222</p>\n",
+      "author": "admin",
+      "authorId": 1,
+      "examineState": 2,
+      "releaseState": 2,
+      "createTime": 1631182298860,
+      "view": 90,
+      "star": 55,
+      "id": 5,
+      "reviewerId": 8,
+      "examineTime": 1631338278408,
+      "delete": false,
+      "releaseTime": 1631350552077,
+      "newsTypeId": 1
+    },
+    {
+      "title": "简单的测试",
+      "newsType": "军事",
+      "content": "<p style=\"text-align:center;\">简单的测试</p>\n",
+      "author": "alan",
+      "authorId": 9,
+      "examineState": 3,
+      "releaseState": 0,
+      "createTime": 1631281833594,
+      "view": 0,
+      "star": 0,
+      "id": 6,
+      "reviewerId": 1,
+      "examineTime": 1631344513638,
+      "delete": false,
+      "newsTypeId": 3
+    },
+    {
+      "title": "测试数据2",
+      "newsType": "国际",
+      "content": "<p>测试数据2</p>\n",
+      "author": "alan",
+      "authorId": 9,
+      "examineState": 2,
+      "releaseState": 2,
+      "createTime": 1631284324595,
+      "view": 232,
+      "star": 21,
+      "id": 7,
+      "reviewerId": 1,
+      "examineTime": 1631538011542,
+      "delete": false,
+      "newsTypeId": 2,
+      "releaseTime": 1631538062152
+    },
+    {
+      "title": "j军事新闻",
+      "newsType": "军事",
+      "content": "<p>军事新闻</p>\n",
+      "author": "admin",
+      "authorId": 1,
+      "examineState": 2,
+      "releaseState": 2,
+      "createTime": 1631941045550,
+      "view": 44,
+      "star": 22,
+      "newsTypeId": 3,
+      "reviewerId": 4,
+      "delete": false,
+      "id": 8,
+      "examineTime": 1631941200160,
+      "releaseTime": 1631941213417
     }
   ]
 }

@@ -7,7 +7,7 @@ const userState = ['action', 'cancel', 'warn']
 const CreateUserForm = (props) => {
     return (
         <Form
-            initialValues={[]}
+            // initialValues={[]}
             form={props.form}
             labelCol={{ span: 5 }}
         >

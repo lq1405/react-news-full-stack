@@ -91,10 +91,17 @@ function SideMenu(props) {
 
     //组件内的props是没有值的，要使用withRouter高阶组件，渲染SideMenu后props才是有值的
     return (
-        <Sider trigger={shrinkIcon} collapsedWidth="60px" collapsed={collapsed} collapsible className='layout-sider'>
+        <Sider
+            trigger={shrinkIcon}
+            collapsedWidth="60px"
+            collapsed={collapsed}
+            collapsible
+            className='layout-sider'>
             {/*  设置菜单的滚动条，将菜单的高度设为100% */}
-            <div style={{ display: "flex", height: '100%', "flexDirection": "column" }}>
-                <div style={{ flex: 1, 'overflow': "auto" }}>
+            <div
+                style={{ display: "flex", height: '100%', "flexDirection": "column" }}>
+                <div
+                    style={{ flex: 1, 'overflow': "auto" }}>
                     <Menu
                         mode="inline"
                         defaultOpenKeys={JSON.parse(localStorage.getItem('token')).role.level === 10 ? openKey : arr}
